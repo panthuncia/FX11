@@ -19,6 +19,7 @@ namespace D3DX11Effects
     uint32_t g_pNegativeOnes[8] = { D3D11_KEEP_UNORDERED_ACCESS_VIEWS, D3D11_KEEP_UNORDERED_ACCESS_VIEWS, D3D11_KEEP_UNORDERED_ACCESS_VIEWS,
                                 D3D11_KEEP_UNORDERED_ACCESS_VIEWS, D3D11_KEEP_UNORDERED_ACCESS_VIEWS, D3D11_KEEP_UNORDERED_ACCESS_VIEWS,
                                 D3D11_KEEP_UNORDERED_ACCESS_VIEWS, D3D11_KEEP_UNORDERED_ACCESS_VIEWS };
+	uint32_t g_pZeroes[8] = { 0,0,0,0,0,0,0,0 };
 
 bool SBaseBlock::ApplyAssignments(CEffect *pEffect)
 {
@@ -208,7 +209,7 @@ void CEffect::ApplyShaderBlock(_In_ SShaderBlock *pBlock)
         else
         {
             // This call could be combined with the call to set render targets if both exist in the pass
-            m_pContext->OMSetRenderTargetsAndUnorderedAccessViews( D3D11_KEEP_RENDER_TARGETS_AND_DEPTH_STENCIL, nullptr, nullptr, pUAVDep->StartIndex, pUAVDep->Count, pUAVDep->ppD3DObjects, g_pNegativeOnes );
+            m_pContext->OMSetRenderTargetsAndUnorderedAccessViews( D3D11_KEEP_RENDER_TARGETS_AND_DEPTH_STENCIL, nullptr, nullptr, pUAVDep->StartIndex, pUAVDep->Count, pUAVDep->ppD3DObjects, g_pZeroes );
         }
     }
 
